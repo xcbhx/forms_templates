@@ -26,15 +26,18 @@ def show_froyo_results():
     users_froyo_toppings = request.args.get('toppings')
     return f'You ordered {users_froyo_flavor} flavored Fro-yo with toppings {users_froyo_toppings}!'
 
-@app.route('/favorites')
+@app.route('/favorites', methods=['GET'])
 def favorites():
     """Shows the user a form to choose their favorite color, animal, and city."""
-    pass
+    return render_template('favorites.html')
 
 @app.route('/favorites_results')
 def favorites_results():
     """Shows the user a nice message using their form results."""
-    pass
+    user_color = request.args.get('color')
+    user_animal = request.args.get('animal')
+    user_city = request.args.get('city')
+    return f"Wow, I didn't know {user_color} {user_animal} lived in {user_city}."
 
 @app.route('/secret_message')
 def secret_message():
@@ -115,4 +118,4 @@ def horoscope_results():
 
 if __name__ == '__main__':
     app.config['ENV'] = 'development'
-    app.run(debug=True)
+    app.run(port=8000, debug=True)
