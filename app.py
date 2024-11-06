@@ -39,16 +39,19 @@ def favorites_results():
     user_city = request.args.get('city')
     return f"Wow, I didn't know {user_color} {user_animal} lived in {user_city}."
 
-@app.route('/secret_message')
+@app.route('/secret_message', methods=['GET'])
 def secret_message():
     """Shows the user a form to collect a secret message. Sends the result via
     the POST method to keep it a secret!"""
-    pass
+    return render_template('secret_message.html')
 
 @app.route('/message_results', methods=['POST'])
 def message_results():
     """Shows the user their message, with the letters in sorted order."""
-    pass
+    user_message = sort_letters(request.form.get('message'))
+    return f"Here's your secret message! {user_message}"
+
+
 
 @app.route('/calculator')
 def calculator():
