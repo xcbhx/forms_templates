@@ -53,28 +53,28 @@ def message_results():
 
 
 
-@app.route('/calculator')
+@app.route('/calculator', methods=['GET'])
 def calculator():
     """Shows the user a form to enter 2 numbers and an operation."""
-    return """
-    <form action="/calculator_results" method="GET">
-        Please enter 2 numbers and select an operator.<br/><br/>
-        <input type="number" name="operand1">
-        <select name="operation">
-            <option value="add">+</option>
-            <option value="subtract">-</option>
-            <option value="multiply">*</option>
-            <option value="divide">/</option>
-        </select>
-        <input type="number" name="operand2">
-        <input type="submit" value="Submit!">
-    </form>
-    """
+    return render_template('calculator_results.html')
 
-@app.route('/calculator_results')
+@app.route('/calculator_results', methods=['POST'])
 def calculator_results():
     """Shows the user the result of their calculation."""
-    pass
+    pick_operand1 = int(request.form.get('operand1'))
+    pick_operand2 = int(request.form.get('operand2'))
+    pick_operation = request.form.get('operation')
+
+    if pick_operation == 'add':
+        user_result = pick_operand1 + pick_operand2
+    elif pick_operation == 'subtract':
+        user_result = pick_operand1 - pick_operand2
+    elif pick_operation == 'multiply':
+        user_result = pick_operand1 * pick_operand2
+    elif pick_operation == 'divide':
+        user_result = pick_operand1 / pick_operand2
+
+    return f'You chose to {pick_operation} {pick_operand1} and {pick_operand2}. Your result is: {user_result}'
 
 
 HOROSCOPE_PERSONALITIES = {
