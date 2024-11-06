@@ -1,18 +1,29 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Homework 2 Home</title>
+        <title>
+            {% block title %}
+            Homework 2 Home
+            {% endblock %}
+        </title>
     </head>
     <body>
-        <h1>Homework 2 Routes</h1>
-        
-        <ul>
-            <li><a href="/froyo">Froyo</a></li>
-            <li><a href="/favorites">Favorites</a></li>
-            <li><a href="/secret_message">Secret Message</a></li>
-            <li><a href="/calculator">Calculator</a></li>
-            <li><a href="/horoscope">Horoscope</a></li>
-        </ul>
+        <header>
+            <h1>Module 2 Assignment Routes</h1>
+        </header>
+        <main>
+            {% block content %} {% endblock %}
+        </main>
+
+        <footer>
+            <ul>
+                <li><a href="/froyo">Froyo</a></li>
+                <li><a href="/favorites">Favorites</a></li>
+                <li><a href="/secret_message">Secret Message</a></li>
+                <li><a href="/calculator">Calculator</a></li>
+                <li><a href="/horoscope">Horoscope</a></li>
+            </ul>
+        </footer>
 
     </body>
 </html>

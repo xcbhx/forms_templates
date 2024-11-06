@@ -1,24 +1,18 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Froyo Results</title>
-    </head>
-    <body>
+{% extends 'home.html' %}
 
-        <form action="/froyo_results" method="GET">
-            What is your favorite Fro-Yo flavor? <br/>
-            <input type="text" name="flavor"><br/>
-            <br/>
-            <label for="toppings">What toppings would you like?</label><br/>
-            <input type="text" name="toppings">
-            <br/>
-            <input type="submit" value="Submit!">
-        </form>
+{% block title %}
+    Froyo Results
+{% endblock %}
+    
+{% block content %}
+    <form action="/froyo_results" method="GET">
+        What is your favorite Fro-Yo flavor? <br/>
+        <input type="text" name="flavor"><br/>
+        <br/>
+        <label for="toppings">What toppings would you like?</label><br/>
+        <input type="text" name="toppings">
+        <br/>
+        <input type="submit" value="Submit!">
+    </form>
+{% endblock %}
 
-
-
-
-
-        
-    </body>
-</html>

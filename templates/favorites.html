@@ -1,27 +1,22 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Favorite Results</title>
-    </head>
-    <body>
+{% extends 'home.html' %}
 
-        <form action="/favorites_results" method="GET">
-            <label for="animal">What is your favorite animal?</label>
-            <input type="text" name="animal">
-            <br/>
-            <label for="color">What is your favorite animal color?</label>
-            <input type="text" name="color">
-            <br/>
-            <label for="city">What city does your favorite animal live in?</label>
-            <input type="text" name="city">
-            <br/>
-            <input type="submit" value="Submit">
-        </form>
+{% block title %}
+    Favorite Results
+{% endblock %}
+    
+{% block content %}
 
+    <form action="/favorites_results" method="GET">
+        <label for="animal">What is your favorite animal?</label>
+        <input type="text" name="animal">
+        <br/>
+        <label for="color">What is your favorite animal color?</label>
+        <input type="text" name="color">
+        <br/>
+        <label for="city">What city does your favorite animal live in?</label>
+        <input type="text" name="city">
+        <br/>
+        <input type="submit" value="Submit">
+    </form>
 
-
-
-
-        
-    </body>
-</html>
+{% endblock %}
