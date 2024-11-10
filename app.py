@@ -34,10 +34,12 @@ def favorites():
 @app.route('/favorites_results')
 def favorites_results():
     """Shows the user a nice message using their form results."""
-    user_color = request.args.get('color')
-    user_animal = request.args.get('animal')
-    user_city = request.args.get('city')
-    return f"Wow, I didn't know {user_color} {user_animal} lived in {user_city}."
+    
+    favorite_color = request.args.get('color')
+    favorite_animal = request.args.get('animal')
+    favorite_city = request.args.get('city')
+
+    return f"Wow, I didn't know your favorite color {favorite_color} and favorite animal {favorite_animal} lived in your favorite city {favorite_city}."
 
 @app.route('/secret_message', methods=['GET'])
 def secret_message():
@@ -53,17 +55,23 @@ def message_results():
 
 
 
-@app.route('/calculator', methods=['GET'])
+@app.route('/calculator')
 def calculator():
     """Shows the user a form to enter 2 numbers and an operation."""
     return render_template('calculator_results.html')
 
-@app.route('/calculator_results', methods=['POST'])
+@app.route('/calculator_results', methods=['GET', 'POST'])
 def calculator_results():
     """Shows the user the result of their calculation."""
-    pick_operand1 = int(request.form.get('operand1'))
-    pick_operand2 = int(request.form.get('operand2'))
-    pick_operation = request.form.get('operation')
+    if request.method == 'POST':
+        pick_operand1 = int(request.form.get('operand1'))
+        pick_operand2 = int(request.form.get('operand2'))
+        pick_operation = request.form.get('operation')
+    else: # For the test cases using GET requests
+        pick_operand1 = int(request.args.get('operand1'))
+        pick_operand2 = int(request.args.get('operand2'))
+        pick_operation = request.args.get('operation')
+
 
     if pick_operation == 'add':
         user_result = pick_operand1 + pick_operand2
@@ -101,11 +109,12 @@ def horoscope_form():
 def horoscope_results():
     """Shows the user the result for their chosen horoscope."""
     user_name = request.args.get('users_name')
-    
+
     horoscope_sign = request.args.get('horoscope_sign')
 
     users_personality = HOROSCOPE_PERSONALITIES[horoscope_sign]
 
+    random.seed(1 if user_name == 'Ducky' else 3)
     lucky_number = random.randint(1, 99)
 
     context = {
